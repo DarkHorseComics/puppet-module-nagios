@@ -7,7 +7,7 @@ class nagios::server(
   $manage_package_with_singleton = false,
   $manage_service                = false,
   $manage_resource_cfg           = false,
-  $plugindir                     = '/usr/lib/nagios/plugins'
+  $plugindir                     = '/usr/lib/nagios/plugins',
   $configuration_root            = '/etc/nagios3/',
   $purge_existing_configs        = true,
   $flat_repository               = true,
