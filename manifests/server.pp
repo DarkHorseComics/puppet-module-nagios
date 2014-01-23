@@ -13,6 +13,7 @@ class nagios::server(
   $flat_repository               = true,
   $flat_repository_vcs           = false, # set to vcs type, e.g git
   $flat_repository_src           = '',
+  $pam_auth                      = false,
   $owner                         = 'nagios',
   $group                         = 'nagios',
 ){
@@ -186,10 +187,12 @@ class nagios::server(
 
 
   # This allows the nagios user to log in
-  pam::access { 'nagios':
-    permission  => '+',
-    entity      => 'nagios',
-    origin      => 'ALL';
+  if $pam_auth {
+    pam::access { 'nagios':
+      permission  => '+',
+      entity      => 'nagios',
+      origin      => 'ALL';
+    }
   }
 
   if $purge_existing_configs {
