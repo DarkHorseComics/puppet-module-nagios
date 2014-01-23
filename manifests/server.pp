@@ -101,7 +101,7 @@ class nagios::server(
       # updates managed by git hook not puppet
       vcsrepo { "${configuration_root}/conf.d/flat":
         ensure    => present,
-        provider  => #flat_repository_vcs,
+        provider  => $flat_repository_vcs,
         user      => $owner,
         source    => $flat_repository_source,
         require   => Package['nagios3'],
